@@ -1,0 +1,6 @@
+This program is for PCB CAD EAGLE and Silhouette Cameo.
+Use this one to write DXF file composed of holes and outlines on a PCB board.
+Cut some paper and place parts on it. This can help checking placements and 
+physical interferences of parts on the board.
+
+Optionally you can print patterns on the board and cut them.
