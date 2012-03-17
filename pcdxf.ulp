@@ -18,11 +18,11 @@ string HEADER =
 "  9\n"
 "$ACADVER\n"
 "  1\n"
-"AC1013\n"
+"AC1009\n"
 "  9\n"
 "$MEASUREMENT\n"
 " 70\n"
-"     1\n"				// unit: mm
+"  1\n"				// unit: mm
 "  0\n"
 "ENDSEC\n"
 "  0\n"
@@ -34,7 +34,7 @@ string LINE =
 "  0\n"
 "LINE\n"
 "  8\n"
-"0\n"					// layer
+"  0\n"					// layer
 " 10\n"
 "%f\n"					// start x
 " 20\n"
@@ -48,7 +48,7 @@ string CIRCLE =
 "  0\n"
 "CIRCLE\n"
 "  8\n"
-"0\n"					// layer
+"  0\n"					// layer
 " 10\n"
 "%f\n"					// center x
 " 20\n"
