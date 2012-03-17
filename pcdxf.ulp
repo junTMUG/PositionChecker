@@ -30,24 +30,6 @@ string HEADER =
 "  2\n"
 "ENTITIES\n";
 
-string POLYLINE =
-"  0\n"
-"LWPOLYLINE\n"
-"  8\n"
-"0\n"					// layer
-" 62\n"
-"7\n"					// color
-" 90\n"
-"%d\n"					// number of points
-" 70\n"
-"%d\n";					// 0=open 1=close
-
-string POLYLINE_POINT =
-" 10\n"
-"%f\n"
-" 20\n"
-"%f\n";
-
 string LINE =
 "  0\n"
 "LINE\n"
@@ -86,26 +68,46 @@ processBoard(UL_BOARD B) {
   printf("%s", HEADER);
   B.elements(E) {
     E.package.contacts(C) {
-      if (C.smd)
-	continue;
+      if (C.smd) continue;
       
       real x = C.pad.x / 10000.0;
       real y = C.pad.y / 10000.0;
-      real d = C.pad.diameter;
+      real d = C.pad.drill / 20000.0;
       
       printf(CIRCLE, x, y, d);
       count++;
     }
     
     E.package.holes(H) {
-      real x = C.pad.x / 10000.0;
-      real y = C.pad.y / 10000.0;
-      real d = C.pad.diameter;
+      real x = H.x / 10000.0;
+      real y = H.y / 10000.0;
+      real d = H.drill / 20000.0;
 
       printf(CIRCLE, x, y, d);
       count++;
     }
   }
+
+  B.holes(H) {
+    real x = H.x / 10000.0;
+    real y = H.y / 10000.0;
+    real d = H.drill / 20000.0;
+
+    printf(CIRCLE, x, y, d);
+    count++;
+  }
+
+  B.wires(W) {
+    if (W.layer != LAYER_DIMENSION) continue;
+
+    real sx = W.x1 / 10000.0;
+    real sy = W.y1 / 10000.0;
+    real ex = W.x2 / 10000.0;
+    real ey = W.y2 / 10000.0;
+    printf(LINE, sx, sy, ex, ey);
+    count++;
+  }
+
   printf("%s", TRAILER);
   return count;
 }
